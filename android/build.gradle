@@ -1,0 +1,57 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        buildToolsVersion = "29.0.2"
+        minSdkVersion = 24
+        compileSdkVersion = 30
+        targetSdkVersion = 30
+        ffmpegKitPackage = "audio-lts"
+        kotlinVersion = '1.6.10'
+    }
+    repositories {
+        google()
+        jcenter()
+        // maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url 'https://repo1.maven.org/maven2/' }
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:3.5.3")
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        exclusiveContent {
+            filter {
+                includeGroup "com.facebook.react"
+            }
+            forRepository {
+                maven {
+                    url "$rootDir/../node_modules/react-native/android"
+                }
+            }
+        }
+        mavenLocal()
+        // maven { url 'https://maven.aliyun.com/repository/public' }
+        // maven { url 'https://maven.aliyun.com/repository/google' }
+        // maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url("$rootDir/../node_modules/react-native/android")
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../node_modules/jsc-android/dist")
+        }
+
+        google()
+        jcenter()
+        maven { url 'https://www.jitpack.io' }
+        // maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url 'https://repo1.maven.org/maven2/' }
+    }
+}

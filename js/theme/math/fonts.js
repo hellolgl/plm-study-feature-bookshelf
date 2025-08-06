@@ -1,0 +1,107 @@
+import { pxToDp, pxToDpHeight } from "../../util/tools";
+import { appFont } from "../index";
+
+export default {
+    txt_32:{
+        fontSize:pxToDp(32)
+    },
+    txt_32_700:{
+        fontSize:pxToDp(32),
+        ...appFont.fontFamily_jcyt_700
+    },
+    txt_32_500:{
+        fontSize:pxToDp(32),
+        ...appFont.fontFamily_jcyt_500
+    },
+    txt_24_500:{
+        fontSize:pxToDp(24),
+        ...appFont.fontFamily_jcyt_500
+    },
+    txt_28_500:{
+        fontSize:pxToDp(28),
+        ...appFont.fontFamily_jcyt_500
+    },
+    txt_36_500:{
+        fontSize:pxToDp(36),
+        ...appFont.fontFamily_jcyt_500
+    },
+    txt_36_700:{
+        fontSize:pxToDp(36),
+        ...appFont.fontFamily_jcyt_700
+    },
+    txt_40_500:{
+        fontSize:pxToDp(40),
+        ...appFont.fontFamily_jcyt_500
+    },
+    txt_40_700:{
+        fontSize:pxToDp(40),
+        ...appFont.fontFamily_jcyt_700
+    },
+    txt_42_700:{
+        fontSize:pxToDp(42),
+        ...appFont.fontFamily_jcyt_700
+    },
+    txt_42_500:{
+        fontSize:pxToDp(42),
+        ...appFont.fontFamily_jcyt_500
+    },
+    txt_66_700:{
+        fontSize:pxToDp(66),
+        ...appFont.fontFamily_jcyt_700
+    },
+    txt_70_700:{
+        fontSize:pxToDp(40),
+        ...appFont.fontFamily_jcyt_700
+    },
+    txt_48:{
+        fontSize:pxToDp(48),
+    },
+    txt_48_500:{
+        fontSize:pxToDp(48),
+        ...appFont.fontFamily_jcyt_700
+    },
+    txt_48_500_h:{
+        fontSize:pxToDpHeight(48),
+        ...appFont.fontFamily_jcyt_500
+    },
+    txt_48_700:{
+        fontSize:pxToDp(48),
+        ...appFont.fontFamily_jcyt_700
+    },
+    txt_fff:{
+        color:"#fff",
+    },
+    txt_fff_50:{
+        color:"rgba(255, 255, 255, 0.50)",
+    },
+    txt_4C4C59:{
+        color:"#4C4C59",
+    },
+    txt_4C4C59_50:{
+        color:"rgba(76, 76, 89, 0.50)",
+    },
+    txt_475266:{
+        color:'#475266',
+    },
+    txt_475266_50:{
+        color:'rgba(71, 82, 102, 0.50)',
+    },
+    txt_006868:{
+        color:'#006868'
+    },
+    txt_246666:{
+        color:'#246666'
+    },
+    txt_A5A5AC:{
+        color:'#A5A5AC'
+    },
+    txt_B26B00:{
+        color:"#B26B00"
+    },
+    txt_16C792:{
+        color:"#16C792"
+    },
+    txt_16C792_50:{
+        color:"rgba(22, 199, 146, 0.50)"
+    }
+}

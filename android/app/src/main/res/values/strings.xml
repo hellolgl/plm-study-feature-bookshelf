@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">派效学</string>
+    <string name="searchBleDevice">搜索蓝牙</string>
+</resources>

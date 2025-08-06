@@ -1,0 +1,99 @@
+//知识图谱题目公共样式
+import { pxToDp, pxToDpHeight } from "../../util/tools";
+import { appFont,mathFont } from "../index";
+
+//1:知识图谱  2同步学习、课桌
+export default {
+    '1':{
+        stem_txt:{
+            ...mathFont.txt_40_700,
+            ...mathFont.txt_4C4C59,
+        },
+        stem_txt_trans:{
+            ...mathFont.txt_32_500,
+            ...mathFont.txt_4C4C59_50
+        },
+        stem_txt_borderBottom_trans:{
+            borderBottomWidth:pxToDp(3),
+        },
+        stem_answer_line:{
+            borderBottomColor:'rgba(76, 76, 89, 0.50)',
+            borderBottomWidth:pxToDp(3),
+            width:pxToDp(50),
+            height:pxToDp(40),
+        },
+        explanation_correct_answer_txt:{
+            ...mathFont.txt_40_700,
+            ...mathFont.txt_16C792
+        },
+        explanation_correct_answer_txt_gou:{
+            ...mathFont.txt_48,
+            ...mathFont.txt_16C792
+        },
+        explanation_correct_answer_trans_txt:{
+            ...mathFont.txt_32_500,
+            ...mathFont.txt_16C792_50
+        },
+        explanation_correct_answer_borderBottom_trans:{
+            borderBottomWidth:pxToDp(3),
+        },
+        explanation_correct_answer_trans_txt_gou:{
+            ...mathFont.txt_32,
+            ...mathFont.txt_16C792_50
+        },
+        explanation_txt:{
+            ...mathFont.txt_40_700,
+            ...mathFont.txt_4C4C59
+        },
+        explanation_trans_txt:{
+            ...mathFont.txt_32_500,
+            ...mathFont.txt_4C4C59_50
+        },
+        explanation_content_txt:{
+            ...mathFont.txt_36_700,
+            ...mathFont.txt_4C4C59
+        },
+        explanation_content_txt_rich:{
+            size:36
+        },
+        explanation_content_trans_txt:{
+            ...mathFont.txt_28_500,
+            ...mathFont.txt_4C4C59_50
+        },
+        explanation_content_trans_txt_rich:{
+            size:28
+        },
+    },
+    '2':{
+        stem_txt:{
+            ...mathFont.txt_40_500,
+            ...mathFont.txt_4C4C59,
+        },
+        stem_answer_line:{
+            borderBottomColor:'rgba(76, 76, 89, 0.50)',
+            borderBottomWidth:pxToDp(3),
+            width:pxToDp(50),
+            height:pxToDp(40),
+        },
+        explanation_correct_answer_txt:{
+            ...mathFont.txt_40_500,
+            ...mathFont.txt_16C792
+        },
+        explanation_correct_answer_txt_gou:{
+            ...mathFont.txt_48,
+            ...mathFont.txt_16C792
+        },
+        explanation_txt:{
+            ...mathFont.txt_40_500,
+            ...mathFont.txt_4C4C59
+        },
+        explanation_content_txt:{
+            ...mathFont.txt_36_500,
+            ...mathFont.txt_4C4C59,
+        },
+        explanation_content_txt_rich:{
+            size:36
+        },
+    }
+
+}

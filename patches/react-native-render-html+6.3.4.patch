@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-render-html/src/helpers/getNativePropsForTNode.ts b/node_modules/react-native-render-html/src/helpers/getNativePropsForTNode.ts
+index 113b28c..7c771bd 100644
+--- a/node_modules/react-native-render-html/src/helpers/getNativePropsForTNode.ts
++++ b/node_modules/react-native-render-html/src/helpers/getNativePropsForTNode.ts
+@@ -69,7 +69,7 @@ export default function getNativePropsForTNode<
+     ...switchProp,
+     children,
+     onPress: syntheticOnPress,
+-    style: [style, passedNativeProps?.style, switchProp.style],
++    style: [Object.assign({color: "black"}, style), passedNativeProps?.style, switchProp.style],
+     testID: tnode.tagName || undefined
+   };
+   return nativeProps as any;

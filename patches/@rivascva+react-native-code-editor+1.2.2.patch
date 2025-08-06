@@ -1,0 +1,144 @@
+diff --git a/node_modules/@rivascva/react-native-code-editor/src/CodeEditor.tsx b/node_modules/@rivascva/react-native-code-editor/src/CodeEditor.tsx
+index fc44a54..4d8d5d4 100644
+--- a/node_modules/@rivascva/react-native-code-editor/src/CodeEditor.tsx
++++ b/node_modules/@rivascva/react-native-code-editor/src/CodeEditor.tsx
+@@ -10,6 +10,7 @@ import {
+     TextInputScrollEventData,
+     TextInputKeyPressEventData,
+     TextInputSelectionChangeEventData,
++    Alert,
+ } from 'react-native';
+ import SyntaxHighlighter, {
+     SyntaxHighlighterStyleType,
+@@ -114,6 +115,8 @@ type TextInputSelectionType = {
+     end: number;
+ };
+ 
++const log = console.log.bind(console)
++
+ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
+     const {
+         style,
+@@ -147,6 +150,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
+     const [value, setValue] = useState<string>(initialValue);
+     const highlighterRef = useRef<ScrollView>(null);
+     const inputRef = useRef<TextInput>(null);
++    const inputNoneRef = useRef<TextInput>(null);
+     const inputSelection = useRef<TextInputSelectionType>({ start: 0, end: 0 });
+ 
+     // Only when line numbers are showing
+@@ -203,7 +207,16 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
+     };
+ 
+     const handleChangeText = (text: string) => {
+-        setValue(Strings.convertTabsToSpaces(text));
++        // setValue(Strings.convertTabsToSpaces(text));
++        const diff = text.length - value.length;
++            setValue(Strings.convertTabsToSpaces(text));
++            
++            inputRef.current?.setNativeProps({
++                selection: {
++                    start: inputSelection.current.start + diff,
++                    end: inputSelection.current.start + diff,
++                },
++            });
+     };
+ 
+     const handleScroll = (e: NativeSyntheticEvent<TextInputScrollEventData>) => {
+@@ -212,23 +225,46 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
+         highlighterRef.current?.scrollTo({ y, animated: false });
+     };
+ 
++    const switchSpecialKey = (key: string) => {
++        const map = {
++            '（': '(',
++            '）': ')',
++            '＝': '=',
++            '‘': "'",
++            '’': "'",
++            '“': '"',
++            '”': '"',
++        }
++        if (map[key]) {
++            return map[key]
++        } else {
++            return key
++        }
++    }
++
+     const handleKeyPress = (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
+-        const key = e.nativeEvent.key;
++        const key = switchSpecialKey(e.nativeEvent.key);
+         switch (key) {
+             case 'Enter':
+                 setTimeout(() => {
+-                    setValue((curr) => addIndentation(curr));
++                    setValue((curr) => 
++                    { 
++                        return addIndentation(curr)});
+                 }, 10);
+                 break;
+             default:
+                 if (Braces.isOpenBrace(key)) {
++                    console.log("is open brace: ")
+                     setTimeout(() => {
+-                        setValue((curr) => addClosingBrace(curr, key));
++                        setValue((curr) => {
++                            return addClosingBrace(curr, key)
++                        });
+                     }, 10);
+                 }
+                 break;
+         }
+         if (onKeyPress) {
++            console.log("KEYPRESS>>>>>>")
+             onKeyPress(key);
+         }
+     };
+@@ -237,6 +273,15 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
+         inputSelection.current = e.nativeEvent.selection;
+     };
+ 
++    let newValue = value.replaceAll("（", "(")
++    newValue = newValue.replaceAll("）", ")")
++    newValue = newValue.replaceAll("“", '"')
++    newValue = newValue.replaceAll("”", '"')
++    newValue = newValue.replaceAll("‘", "'")
++    newValue = newValue.replaceAll("’", "'")
++    newValue = newValue.replaceAll("｛", "{")
++    newValue = newValue.replaceAll("｝", "}")
++    console.log("new value: ", newValue)
+     return (
+         <View style={{ width, height, marginTop, marginBottom }}>
+             <SyntaxHighlighter
+@@ -247,7 +292,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
+                 showLineNumbers={showLineNumbers}
+                 ref={highlighterRef}
+             >
+-                {value}
++                {newValue}
+             </SyntaxHighlighter>
+             <TextInput
+                 style={[
+@@ -262,7 +307,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
+                         paddingLeft: lineNumbersPadding,
+                     },
+                 ]}
+-                value={value}
++                value={newValue}
+                 onChangeText={handleChangeText}
+                 onScroll={handleScroll}
+                 onKeyPress={handleKeyPress}
+@@ -271,9 +316,10 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
+                 autoComplete="off"
+                 autoCorrect={false}
+                 autoFocus={autoFocus}
+-                keyboardType="ascii-capable"
++                // keyboardType={Platform.OS==="ios"? "ascii-capable": "default"}
++                keyboardType={"default"}
+                 editable={!readOnly}
+-                ref={inputRef}
++                ref={Platform.OS === "ios"? inputRef : inputNoneRef}
+                 multiline
+             />
+         </View>

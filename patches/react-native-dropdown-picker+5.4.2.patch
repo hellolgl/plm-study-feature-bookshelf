@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-dropdown-picker/src/translations/index.js b/node_modules/react-native-dropdown-picker/src/translations/index.js
+index 1b5e05a..135122c 100644
+--- a/node_modules/react-native-dropdown-picker/src/translations/index.js
++++ b/node_modules/react-native-dropdown-picker/src/translations/index.js
+@@ -6,7 +6,7 @@ export default {
+             1: 'An item has been selected',
+             n: '{count} items have been selected'
+         },
+-        NOTHING_TO_SHOW: 'There\'s nothing to show!'
++        NOTHING_TO_SHOW: '无'
+     },
+     AR: {
+         PLACEHOLDER: 'حدد عنصر',

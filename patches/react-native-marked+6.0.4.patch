@@ -1,0 +1,76 @@
+diff --git a/node_modules/react-native-marked/src/hooks/useMarkdown.ts b/node_modules/react-native-marked/src/hooks/useMarkdown.ts
+index 5b32844..acd53a3 100644
+--- a/node_modules/react-native-marked/src/hooks/useMarkdown.ts
++++ b/node_modules/react-native-marked/src/hooks/useMarkdown.ts
+@@ -20,11 +20,11 @@ const useMarkdown = (
+ 	value: string,
+ 	options?: useMarkdownHookOptions,
+ ): ReactNode[] => {
++
+ 	const styles = useMemo(
+ 		() => getStyles(options?.styles, options?.colorScheme, options?.theme),
+ 		[options?.styles, options?.theme, options?.colorScheme],
+ 	);
+-
+ 	const parser = useMemo(
+ 		() =>
+ 			new Parser({
+diff --git a/node_modules/react-native-marked/src/lib/Markdown.tsx b/node_modules/react-native-marked/src/lib/Markdown.tsx
+index 583130d..d1cdc4e 100644
+--- a/node_modules/react-native-marked/src/lib/Markdown.tsx
++++ b/node_modules/react-native-marked/src/lib/Markdown.tsx
+@@ -44,7 +44,7 @@ const Markdown = ({
+ 			maxToRenderPerBatch={8}
+ 			initialNumToRender={8}
+ 			style={{
+-				backgroundColor: colorScheme === "light" ? "#ffffff" : "#000000",
++				// backgroundColor: colorScheme === "light" ? "#ffffff" : "#000000",
+ 			}}
+ 			{...flatListProps}
+ 			data={rnElements}
+diff --git a/node_modules/react-native-marked/src/theme/colors.ts b/node_modules/react-native-marked/src/theme/colors.ts
+index 7482d1a..383f281 100644
+--- a/node_modules/react-native-marked/src/theme/colors.ts
++++ b/node_modules/react-native-marked/src/theme/colors.ts
+@@ -13,18 +13,24 @@ export interface ColorsPropType {
+ 
+ const colors: Record<"light" | "dark", ColorsPropType> = {
+ 	light: {
+-		background: "#ffffff",
++		// background: "#ffffff",
++		background: "transparent",
+ 		code: "#f6f8fa",
+ 		link: "#58a6ff",
+ 		text: "#333333",
+ 		border: "#d0d7de",
+ 	},
+ 	dark: {
+-		background: "#000000",
+-		code: "#161b22",
++		// background: "#000000",
++		// code: "#161b22",
++		// link: "#58a6ff",
++		// text: "#ffffff",
++		// border: "#30363d",
++		background: "transparent",
++		code: "#f6f8fa",
+ 		link: "#58a6ff",
+-		text: "#ffffff",
+-		border: "#30363d",
++		text: "#333333",
++		border: "#d0d7de",
+ 	},
+ };
+ 
+diff --git a/node_modules/react-native-marked/src/theme/styles.ts b/node_modules/react-native-marked/src/theme/styles.ts
+index 3064974..77c1ca7 100644
+--- a/node_modules/react-native-marked/src/theme/styles.ts
++++ b/node_modules/react-native-marked/src/theme/styles.ts
+@@ -24,7 +24,6 @@ const getStyles = (
+ ): MarkedStyles => {
+ 	const mdColors = { ...colors[colorScheme || "light"], ...userTheme?.colors };
+ 	const mdSpacing = { ...spacing, ...userTheme?.spacing };
+-
+ 	const fontStyle = getFontStyles(mdColors);
+ 	return StyleSheet.create<MarkedStyles>({
+ 		em: StyleSheet.flatten([
